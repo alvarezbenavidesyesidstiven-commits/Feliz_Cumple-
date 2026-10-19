@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#160d15">
+  <meta name="description" content="Una pequeña sorpresa de cumpleaños hecha con cariño.">
+  <title>Para ti, en tu día</title>
+  <style>
+    :root {
+      --night: #160d15;
+      --wine: #451b2e;
+      --rose: #e8a1b2;
+      --pink: #f4cbd4;
+      --cream: #fff3e9;
+      --gold: #d9b77e;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--cream); background:
+        radial-gradient(ellipse at 50% 0%, #54253d 0%, transparent 48%),
+        linear-gradient(180deg, #160d15 0%, #24111d 48%, #100b11 100%);
+      font-family: Georgia, "Times New Roman", serif;
+      min-height: 100vh; overflow-x: hidden;
+    }
+    button { font: inherit; }
+    .grain {
+      pointer-events: none; position: fixed; inset: 0; opacity: .12; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+    }
+    .petals { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+    .petal { position: absolute; top: -12vh; width: 12px; height: 18px; border-radius: 80% 10% 70% 20%; background: linear-gradient(135deg,#ffdbe2,#bd526f); opacity: .72; animation: fall linear infinite; }
+    @keyframes fall { to { transform: translate3d(var(--drift),112vh,0) rotate(760deg); } 
+    .hero { min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 50px 0 38px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .25em; color: var(--gold); font: 11px/1.7 system-ui, sans-serif; }
+    h1 { font-size: clamp(2.5rem, 10vw, 5.1rem); font-weight: 400; line-height: .98; margin: 18px 0; letter-spacing: -.04em; }
+    h1 em { color: var(--rose); font-weight: 400; }
+    .intro { color: #ead5db; max-width: 460px; line-height: 1.8; font-size: 1.05rem; margin: 0 auto 26px; }
+    .heart-wrap { width: 150px; height: 150px; margin: 16px auto 25px; display: grid; place-items: center; position: relative; }
+    .heart-glow { position: absolute; inset: 15px; background: #e04d79; filter: blur(34px); opacity: .32; border-radius: 50%; }
+    .heart { width: 86px; height: 86px; position: relative; transform: rotate(-45deg); background: linear-gradient(135deg,#ffb6c7,#b31d4d); animation: beat 1.35s ease-in-out infinite; filter: drop-shadow(0 0 18px #d43d6b77); }
+    .heart:before, .heart:after { content:""; position:absolute; width:86px; height:86px; background:inherit; border-radius:50%; }
+    .heart:before { top:-43px; left:0; }
+    .heart:after { left:43px; top:0; }
+    @keyframes beat { 0%,100% { transform:rotate(-45deg) scale(1); } 12% { transform:rotate(-45deg) scale(1.09); } 24% { transform:rotate(-45deg) scale(1); } 36% { transform:rotate(-45deg) scale(1.07); } }
+    .btn { border: 1px solid #d9b77e99; color: var(--cream); background: #ffffff0b; border-radius: 999px; padding: 14px 22px; cursor: pointer; transition: .25s; min-height: 48px; -webkit-tap-highlight-color: transparent; }
+    .btn:hover, .btn:focus-visible { background: #e8a1b21c; border-color: var(--rose); outline: none; }
+    .hint { display:block; margin-top: 16px; color: #bba7b0; font: 12px system-ui,sans-serif; }
+    section { padding: 76px 0; text-align: center; }
+    .section-kicker { color: var(--gold); font: 11px system-ui,sans-serif; letter-spacing: .24em; text-transform: uppercase; }
+    h2 { font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 400; margin: 14px 0 22px; }
+    h2 em { color: var(--rose); font-weight: 400; }
+    .rose-art { font-size: 3.6rem; letter-spacing: .2em; filter: drop-shadow(0 0 16px #c65a7b44); animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-8px) } }
+    .divider { display:flex; align-items:center; justify-content:center; gap:12px; color:var(--gold); margin:28px 0; font-size: 15px; }
+    .divider:before,.divider:after { content:""; width:65px; height:1px; background:linear-gradient(90deg,transparent,#d9b77e99); }
+    .divider:after { transform:scaleX(-1); }
+    .photo-frame { width: min(100%, 390px); margin: 26px auto; padding: 10px; border:1px solid #d9b77e88; border-radius: 190px 190px 18px 18px; background:linear-gradient(145deg,#ffffff13,#ffffff03); box-shadow:0 20px 70px #0005; }
+    .photo-frame img { display:block; width:100%; aspect-ratio: 3/4; object-fit:cover; border-radius:180px 180px 12px 12px; background:#38202d; }
+    .photo-placeholder { aspect-ratio:3/4; display:grid; place-items:center; padding:28px; border-radius:180px 180px 12px 12px; color:#e8cbd4; background:linear-gradient(145deg,#5b2c43,#241321); line-height:1.7; }
+    .photo-placeholder strong { display:block; font-size:1.4rem; font-weight:400; }
+    .caption { color:#cdbac3; font:12px system-ui,sans-serif; margin:14px 0 0; }
+    .letter { text-align:left; max-width:620px; margin:24px auto 0; padding:clamp(22px,5vw,42px); border:1px solid #d9b77e55; border-radius:18px; background:linear-gradient(145deg,#ffffff0b,#ffffff03); box-shadow:0 22px 65px #0002; }
+    .letter p { color:#f0dfe4; font-size:1.08rem; line-height:1.95; margin:0 0 18px; }
+    .letter p:last-child { margin-bottom:0; }
+    .sign { color:var(--rose)!important; font-size:1.3rem!important; font-style:italic; }
+    .footer { padding: 38px 0 60px; text-align:center; color:#bba7b0; font:12px/1.8 system-ui,sans-serif; }
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .8s ease,transform .8s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .music-note { font:12px system-ui,sans-serif; color:#bba7b0; margin-top:12px; }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="petals" id="petals" aria-hidden="true"></div>
+  <main>
+    <header class="hero">
+      <div>
+        <div class="eyebrow">20 de octubre · Un detalle para ti</div>
+        <div class="heart-wrap" aria-hidden="true"><div class="heart-glow"></div><div class="heart"></div></div>
+        <h1>Hoy el mundo<br>celebra <em>tu vida.</em></h1>
+        <p class="intro">Y yo quería regalarte algo distinto: un pequeño rincón hecho con cariño, solo para sacarte una sonrisa.</p>
+        <button class="btn" id="startBtn">Abrir tu sorpresa <span aria-hidden="true">♡</span></button>
+        <span class="hint">Hecho con cariño, detalle a detalle.</span>
+      </div>
+    </header>
+
+    <section class="reveal" id="roses">
+      <div class="section-kicker">Para alguien especial</div>
+      <h2>Unas rosas para <em>ti</em></h2>
+      <div class="rose-art" aria-label="Rosas">🌹 🌹 🌹</div>
+      <div class="divider">✧</div>
+      <p class="intro">No encontré una forma más bonita de decirlo que preparar algo con mis propias manos —y un poquito de código— pensando en ti.</p>
+    </section>
+
+    <section class="reveal" id="photo">
+      <div class="section-kicker">Un recuerdo bonito</div>
+      <h2>Hay encuentros que llegan <em>sin planearlos</em></h2>
+      <div class="photo-frame" id="photoFrame">
+        <div class="photo-placeholder" id="photoPlaceholder">
+          <div><strong>Tu fotografía aquí</strong>Guarda tu foto como <code>foto-de-ella.jpg</code> en la misma carpeta que este archivo y se mostrará en este espacio.</div>
+        </div>
+      </div>
+      <p class="caption">Una imagen tuya, en un recuerdo que ahora también quiero guardar.</p>
+    </section>
+
+    <section class="reveal" id="letterSection">
+      <div class="section-kicker">Unas palabras sinceras</div>
+      <h2>Cómo empezó <em>esta coincidencia</em></h2>
+      <article class="letter">
+        <p>Si me hubieran dicho que un día tan sencillo terminaría convirtiéndose en un recuerdo tan bonito, quizá no lo habría imaginado.</p>
+        <p>Todo empezó cuando coincidimos en Palmira, en medio de una situación familiar importante. Después llegaron esas pequeñas vueltas de la vida: salir a cambiar una chaqueta, no poder hacerlo como esperábamos y decidir aprovechar la venida de otra manera.</p>
+        <p>Mientras esperábamos el taxi, terminamos compartiendo algo en la panadería. Y cuando llegó el momento de ir a la clínica, quise acompañarte y esperarte, porque no me gustaba la idea de que tuvieras que irte sola.</p>
+        <p>Al final terminé acompañándote hasta el bus, hasta la terminal. Recuerdo haberte dicho que me había gustado conocerte, que me llamabas la atención y que me gustaría que siguiéramos saliendo, fuera en Santander o por Cali. Me despedí con un beso en la mejilla, con esa mezcla de nervios y alegría que dejan los momentos especiales.</p>
+        <p>Y me alegró saber que tú también querías que siguiéramos en contacto. A veces las cosas más bonitas empiezan así: sin grandes planes, entre una conversación, una espera y la decisión de compartir un ratito más.</p>
+        <p>No quiero apresurar nada ni ponerle nombre a lo que apenas está creciendo. Solo quería que supieras que me gusta conocerte, que me llamas la atención y que me hace ilusión descubrir poco a poco todo eso que te hace ser tú.</p>
+        <p>Hoy, por tu cumpleaños, deseo que la vida te devuelva en sonrisas toda la alegría que mereces, que tu nuevo año venga lleno de salud, tranquilidad, oportunidades y personas que te quieran bonito.</p>
+        <p class="sign">Feliz cumpleaños. Me alegra que nuestros caminos se hayan cruzado. 🌹</p>
+      </article>
+    </section>
+
+    <section class="reveal">
+      <div class="rose-art">♡</div>
+      <h2>Que hoy te sobren<br><em>motivos para sonreír.</em></h2>
+      <p class="intro">Y que este sea solo uno de muchos recuerdos bonitos que todavía nos falten por crear.</p>
+      <button class="btn" id="againBtn">Volver a sentir la sorpresa ✨</button>
+    </section>
+
+    <footer class="footer">Creado especialmente para tu cumpleaños.<br><span style="color:#d9b77e">Con cariño, de alguien a quien le alegra haberte conocido.</span></footer>
+  </main>
+  <script>
+    // Pétalos suaves; se limita su cantidad para cuidar el rendimiento del iPhone.
+    const petals = document.getElementById('petals');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('span');
+      p.className = 'petal';
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.animationDuration = (10 + Math.random() * 12) + 's';
+      p.style.animationDelay = (-Math.random() * 18) + 's';
+      p.style.setProperty('--drift', (Math.random() * 150 - 75) + 'px');
+      p.style.opacity = (0.25 + Math.random() * 0.55).toFixed(2);
+      p.style.transform = `scale(${0.55 + Math.random() * 0.9})`;
+      petals.appendChild(p);
+    }
+    const startBtn = document.getElementById('startBtn');
+    startBtn.addEventListener('click', () => {
+      document.getElementById('roses').scrollIntoView({behavior:'smooth'});
+    });
+    document.getElementById('againBtn').addEventListener('click', () => {
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Añade automáticamente la foto si el archivo foto-de-ella.jpg está en la misma carpeta.
+    const img = new Image();
+    img.onload = () => {
+      const frame = document.getElementById('photoFrame');
+      frame.innerHTML = '';
+      img.alt = 'Fotografía para la sorpresa de cumpleaños';
+      frame.appendChild(img);
+      img.style.cssText = 'display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:180px 180px 12px 12px;background:#38202d';
+    };
+    img.onerror = () => {};
+    img.src = 'foto-de-ella.jpg';
+  </script>
+</body>
+</html>
